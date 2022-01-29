@@ -5,15 +5,18 @@ using UnityEngine.UI;
 public class RepairMinigame : Minigame {
 
     private int numberOfHoles;
+
+    [SerializeField]
     private GameObject[] holes;
 
     [SerializeField]
     private GameObject SeaBattle;
 
     private void Awake() {
-        holes = GameObject.FindGameObjectsWithTag("Hole");
-        SeaBattle = GameObject.Find("SeaBattle");
+        //holes = GameObject.FindGameObjectsWithTag("Hole");
+        //SeaBattle = GameObject.Find("SeaBattle");
         numberOfHoles = holes.Length;
+        minigameGroup.SetActive(false);
     }
 
     private void FixedUpdate() {

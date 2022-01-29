@@ -5,17 +5,18 @@ using UnityEngine.UI;
 public class MinigameCannon : Minigame {
 
     private int numberOfTargets;
+
+    [SerializeField]
     private GameObject[] targets;
-
-
     [SerializeField]
     private GameObject Aim;
     [SerializeField]
     private GameObject SeaBattle;
 
     private void Awake() {
-        targets = GameObject.FindGameObjectsWithTag("Target");
+        //targets = GameObject.FindGameObjectsWithTag("Target");
         numberOfTargets = targets.Length;
+        minigameGroup.SetActive(false);
     }
 
     private void FixedUpdate() {
