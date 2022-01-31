@@ -8,10 +8,15 @@ public class MinigameCannon : Minigame {
 
     [SerializeField]
     private GameObject[] targets;
+
     [SerializeField]
     private GameObject Aim;
+
     [SerializeField]
     private GameObject SeaBattle;
+
+    [SerializeField]
+    private Button button;
 
     private void Awake() {
         //targets = GameObject.FindGameObjectsWithTag("Target");
@@ -32,7 +37,7 @@ public class MinigameCannon : Minigame {
         foreach (GameObject currentTarget in targets) {
             currentTarget.GetComponent<Target>().targetActivation();
         }
-
+        button.GetComponent<ButtonCooldown>().StopCooldown();
         StartCoroutine(countdownToEnd());
 
     }
@@ -62,7 +67,7 @@ public class MinigameCannon : Minigame {
         minigameGroup.SetActive(false);
         countdownBar.SetActive(false);
         SeaBattle.SetActive(true);
-        GameObject.FindGameObjectWithTag("SeaAttack").GetComponent<ButtonCooldown>().startCooldown();
+        button.GetComponent<ButtonCooldown>().DrawCooldown();
         Aim.GetComponent<AimMovement>().ResetPosition();
         countdownBar.GetComponent<Healthbar>().fullHealth();
     }

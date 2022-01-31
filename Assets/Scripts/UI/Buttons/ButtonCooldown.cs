@@ -12,10 +12,22 @@ public class ButtonCooldown : MonoBehaviour {
     [SerializeField]
     private Button cooldownButton;
 
+    [Header("Drawer reference")]
+    [SerializeField]
+    private GameObject drawer;
+
     private float cooldownTime = 5;
-    private float cooldownEndTime = 0;
+
+    public void DrawCooldown() {
+        drawer.GetComponent<Drawer>().DrawCooldownButton(cooldownTime, cooldownImage, cooldownButton);
+    }
+
+    public void StopCooldown() {
+        drawer.GetComponent<Drawer>().PauseDrawer();
+    }
 
     //!!!!!make common function
+    /*
     private IEnumerator drawCooldown(float cooldownTime, float cooldownEndTime) {
         float t = 0;
         float startFill = 0;
@@ -31,4 +43,5 @@ public class ButtonCooldown : MonoBehaviour {
         cooldownButton.interactable = false;
         StartCoroutine(drawCooldown(cooldownTime, cooldownEndTime));
     }
+    */
 }
