@@ -18,6 +18,9 @@ public class MinigameCannon : Minigame {
     [SerializeField]
     private Button button;
 
+    [SerializeField]
+    private ParticleSystem woodenRemains;
+
     private void Awake() {
         //targets = GameObject.FindGameObjectsWithTag("Target");
         numberOfTargets = targets.Length;
@@ -70,5 +73,7 @@ public class MinigameCannon : Minigame {
         button.GetComponent<ButtonCooldown>().DrawCooldown();
         Aim.GetComponent<AimMovement>().ResetPosition();
         countdownBar.GetComponent<Healthbar>().fullHealth();
+        ParticleSystem remains = Instantiate(woodenRemains);
+        remains.Play();
     }
 }
