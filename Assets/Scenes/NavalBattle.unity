@@ -339,8 +339,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1475458090}
-        m_TargetAssemblyTypeName: MinigameEvasion, Assembly-CSharp
+      - m_Target: {fileID: 2141007062}
+        m_TargetAssemblyTypeName: MinigameEngage, Assembly-CSharp
         m_MethodName: startMinigame
         m_Mode: 1
         m_Arguments:
@@ -3706,8 +3706,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c81e121b00bab141832a2d0ee9aafa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigameGroup: {fileID: 0}
-  countdownBar: {fileID: 0}
+  minigameGroup: {fileID: 2141007060}
+  countdownBar: {fileID: 745511578}
+  enemyShip: {fileID: 905731900}
+  button: {fileID: 124979168}
+  SeaBattle: {fileID: 324426121}
 --- !u!1001 &2694245716452230069
 PrefabInstance:
   m_ObjectHideFlags: 0
