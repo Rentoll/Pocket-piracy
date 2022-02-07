@@ -43,11 +43,6 @@ public class MinigameEvasion : Minigame {
         float speed = 10;
         bool cameraReturning = false;
         while (active) {
-            //moving from one border to another
-            /*
-            if (Mathf.Abs(transform.localPosition.y) >= Mathf.Abs(bound)) {
-                bound = -bound;
-            }*/
             mainCamera.transform.localPosition = Vector3.MoveTowards(mainCamera.transform.localPosition, new Vector3(bound, mainCamera.transform.localPosition.y, mainCamera.transform.localPosition.z), Time.deltaTime * speed);
             if (mainCamera.transform.localPosition.x >= bound) {
                 bound = 0;

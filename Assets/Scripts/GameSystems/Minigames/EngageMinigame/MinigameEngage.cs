@@ -1,18 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Engage : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class MinigameEngage : Minigame {
+
+    [SerializeField]
+    private GameObject enemyShip;
+
+    [SerializeField]
+    private Button button;
+
+    [SerializeField]
+    private GameObject SeaBattle;
+
+    private float yVelocity = 0.0f;
+
+    private Vector3[] enemyShipSize = {
+        new Vector3(0.55f, 0.55f, 0.55f),
+        new Vector3(0.7f, 0.7f, 0.7f)
+    };
+
+    private int finalSize = 1;
+
+    private int currentEnemySize = 0;
+
+    public override void startMinigame() {
+        if (currentEnemySize > finalSize) {
+            endMinigame();
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Start boarding
+        }
+        Debug.Log("Started engaging minigame");
+        minigameGroup.SetActive(true);
+
+        StartCoroutine(ShipEngage(enemyShip.transform.localScale));
+
+        //countdownBar.SetActive(true);
+
+        //countdownBar.GetComponent<Healthbar>().fullHealth();
+        SeaBattle.SetActive(false);
+
+        button.GetComponent<ButtonCooldown>().StopCooldown();
+        StartCoroutine(countdownToEnd());
+    }
+    private IEnumerator ShipEngage(Vector3 minScale) {
+        Debug.Log("Started sizing enemy ship");
+
+        float time = 3f;
+        float speed = 2f;
+
+        float i = 0f;
+        float rate = (1f / time) * speed;
+        while(i < 0.9f) {
+            i += Time.deltaTime * rate;
+            enemyShip.transform.localScale = Vector3.Lerp(minScale, enemyShipSize[currentEnemySize], i);
+            yield return null;
+        }
+        currentEnemySize++;
+        endMinigame();
+    }
+    protected override void checkTargetsCondition() {
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    protected override IEnumerator countdownToEnd() {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void endMinigame() {
+        minigameGroup.SetActive(false);
+        //countdownBar.SetActive(false);
+        SeaBattle.SetActive(true);
+        button.GetComponent<ButtonCooldown>().DrawCooldown();
+        //countdownBar.GetComponent<Healthbar>().fullHealth();
+    }
+
+    protected override float minigameResult() {
+        throw new System.NotImplementedException();
     }
 }

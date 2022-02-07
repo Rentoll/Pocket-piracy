@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Target : MonoBehaviour {
 
+    [Header("Particles")]
+    [SerializeField]
+    ParticleSystem hitTarget;
+    [SerializeField]
+    ParticleSystem missTarget;
+
     private bool touchable = false;
     private bool active;
 
@@ -64,11 +70,13 @@ public class Target : MonoBehaviour {
     private void successfulShot() {
         //change for image
         targetSprite.color = Color.grey;
+        hitTarget.Play();
     }
 
     private void unsuccessfulShot() {
         //change for image
         targetSprite.color = Color.yellow;
+        missTarget.Play();
     }
 
     public bool isHit() {

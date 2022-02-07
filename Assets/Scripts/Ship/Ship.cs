@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class Ship {
-
+public class Ship : MonoBehaviour {
 
     private float hullPoints;
     private float repairCooldown;
     private float numberOfRepairPoints;
 
-    //img Ship
+    private Sprite[] shipCondition;
     //img UI ship
 
     private float evadeCooldown;
