@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour {
 
+    [SerializeField]
     private float hullPoints;
+    [SerializeField]
     private float repairCooldown;
+    [SerializeField]
     private float numberOfRepairPoints;
-
+    [SerializeField]
     private Sprite[] shipCondition;
     //img UI ship
-
+    [SerializeField]
     private float evadeCooldown;
+    [SerializeField]
     private float boardingCooldown;
-
+    [SerializeField]
     private float cannonReloadSpeed;
+    [SerializeField]
     private float cannonDamage;
+    [SerializeField]
     private int cannonNum;
 
     public float HullPoints { get => hullPoints; set => hullPoints = value; }

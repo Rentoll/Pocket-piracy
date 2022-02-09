@@ -6,7 +6,7 @@ public class NavalCombatSystem : MonoBehaviour {
     private Ship playerShip;
     private Ship enemyShip;
 
-    private void attackShip(Ship attacker, Ship target) {
+    private void AttackShip(Ship attacker, Ship target) {
         target.HullPoints -= attacker.calculateDamage();
         checkWinLoseCondition();
     }
