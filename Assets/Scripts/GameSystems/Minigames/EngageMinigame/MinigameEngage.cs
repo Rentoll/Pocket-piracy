@@ -7,18 +7,21 @@ public class MinigameEngage : Minigame {
 
     [SerializeField]
     private GameObject enemyShip;
-
     [SerializeField]
     private Button button;
 
     [SerializeField]
     private GameObject SeaBattle;
-
-    private float yVelocity = 0.0f;
-
-    private Vector3[] enemyShipSize = {
+    /*
+    private Vector3[] enemyShipScale = {
         new Vector3(0.55f, 0.55f, 0.55f),
         new Vector3(0.7f, 0.7f, 0.7f)
+    };
+    */
+
+    private Vector3[] enemyShipScale = {
+        new Vector3(1.2f, 1.2f, 1f),
+        new Vector3(1.4f, 1.4f, 1f)
     };
 
     private int finalSize = 1;
@@ -53,7 +56,7 @@ public class MinigameEngage : Minigame {
         float rate = (1f / time) * speed;
         while(i < 0.9f) {
             i += Time.deltaTime * rate;
-            enemyShip.transform.localScale = Vector3.Lerp(minScale, enemyShipSize[currentEnemySize], i);
+            enemyShip.transform.localScale = Vector3.Lerp(minScale, enemyShipScale[currentEnemySize], i);
             yield return null;
         }
         currentEnemySize++;
