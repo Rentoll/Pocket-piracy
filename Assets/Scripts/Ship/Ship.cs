@@ -12,7 +12,6 @@ public class Ship : MonoBehaviour {
     private float numberOfRepairPoints;
     [SerializeField]
     private Sprite[] shipCondition;
-    //img UI ship
     [SerializeField]
     private float evadeCooldown;
     [SerializeField]
@@ -23,6 +22,7 @@ public class Ship : MonoBehaviour {
     private float cannonDamage;
     [SerializeField]
     private int cannonNum;
+    private float fullHullPoints;
 
     public float HullPoints { get => hullPoints; set => hullPoints = value; }
     public float RepairCooldown { get => repairCooldown; set => repairCooldown = value; }
@@ -32,6 +32,11 @@ public class Ship : MonoBehaviour {
     public float CannonReloadSpeed { get => cannonReloadSpeed; set => cannonReloadSpeed = value; }
     public float CannonDamage { get => cannonDamage; set => cannonDamage = value; }
     public int CannonNum { get => cannonNum; set => cannonNum = value; }
+    public float FullHullPoints { get => fullHullPoints; }
+
+    private Ship() {
+        fullHullPoints = hullPoints;
+    }
 
     public float calculateDamage() {
         return CannonDamage * CannonNum;

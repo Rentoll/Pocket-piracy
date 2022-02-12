@@ -1185,6 +1185,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &442435530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 442435532}
+  - component: {fileID: 442435531}
+  m_Layer: 0
+  m_Name: NavalCombat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &442435531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442435530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c11acbb718e9a943a4249c0393c0ea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &442435532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442435530}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.008354115, y: 0.6936736, z: -3.738389}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &517421633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,13 +1273,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hullPoints: 100
   repairCooldown: 10
-  numberOfRepairPoints: 20
+  numberOfRepairPoints: 15
   shipCondition: []
   evadeCooldown: 7
   boardingCooldown: 7
-  cannonReloadSpeed: 10
-  cannonDamage: 5
-  cannonNum: 5
+  cannonReloadSpeed: 6
+  cannonDamage: 4
+  cannonNum: 4
 --- !u!1 &565662831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,6 +1783,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameGroup: {fileID: 929450838}
   countdownBar: {fileID: 745511578}
+  NavalCombat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 442435531}
+        m_TargetAssemblyTypeName: NavalCombatSystem, Assembly-CSharp
+        m_MethodName: AttackEnemyShip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   targets:
   - {fileID: 1134531893}
   - {fileID: 215344686}
@@ -1988,11 +2046,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bddfc67cc5fd52c43a9b3337a21376af, type: 3}
   - {fileID: 21300000, guid: 5e432bed4272d4746b65958b40ebdbb9, type: 3}
   - {fileID: 21300000, guid: da7e7c3a9c71b084ebf9418ff24b36e4, type: 3}
-  evadeCooldown: 10
+  evadeCooldown: 100
   boardingCooldown: 10
   cannonReloadSpeed: 10
-  cannonDamage: 3
-  cannonNum: 5
+  cannonDamage: 5
+  cannonNum: 4
 --- !u!95 &1086556619
 Animator:
   serializedVersion: 3
@@ -2027,6 +2085,21 @@ MonoBehaviour:
   enemyShipGameObject: {fileID: 1086556616}
   attackIndicator: {fileID: 1071279852}
   attackIndicatorMask: {fileID: 183854718}
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 442435531}
+        m_TargetAssemblyTypeName: NavalCombatSystem, Assembly-CSharp
+        m_MethodName: AttackPlayerShip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1109279388
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,6 +2422,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameGroup: {fileID: 1291022357}
   countdownBar: {fileID: 745511578}
+  NavalCombat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 442435531}
+        m_TargetAssemblyTypeName: NavalCombatSystem, Assembly-CSharp
+        m_MethodName: PlayerRepair
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   holes:
   - {fileID: 1736561473}
   - {fileID: 248243145}
@@ -2708,6 +2796,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameGroup: {fileID: 1475458088}
   countdownBar: {fileID: 1934307073}
+  NavalCombat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 442435531}
+        m_TargetAssemblyTypeName: NavalCombatSystem, Assembly-CSharp
+        m_MethodName: PlayerEvasionManeuver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   mainCamera: {fileID: 262529092}
   button: {fileID: 1646330651}
   SeaBattle: {fileID: 1510571461}
@@ -4335,6 +4438,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameGroup: {fileID: 2141007060}
   countdownBar: {fileID: 745511578}
+  NavalCombat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 442435530}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   enemyShip: {fileID: 1086556616}
   button: {fileID: 124979168}
   SeaBattle: {fileID: 324426121}

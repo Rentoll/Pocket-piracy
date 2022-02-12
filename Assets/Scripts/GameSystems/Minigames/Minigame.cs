@@ -1,13 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Minigame : MonoBehaviour {
     [SerializeField]
     protected GameObject minigameGroup;
     [SerializeField]
     protected GameObject countdownBar;
-
-    private float MinigameTime = 10;
+    public UnityEventFloat NavalCombat;
 
     protected float successRate = 0;
     protected float minigameTimeInSeconds = 10;//seconds

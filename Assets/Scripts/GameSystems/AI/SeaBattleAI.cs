@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class SeaBattleAI : MonoBehaviour {
@@ -9,8 +9,10 @@ public class SeaBattleAI : MonoBehaviour {
     private GameObject attackIndicator;
     [SerializeField]
     private GameObject attackIndicatorMask;
-    private float actionCooldownTime;
 
+    public UnityEvent OnAttack;
+
+    private float actionCooldownTime;
     private Ship enemyShip;
 
     private void Awake() {
@@ -24,10 +26,10 @@ public class SeaBattleAI : MonoBehaviour {
     }
 
     private void ProcessAI() {
-        
         if (Time.time + enemyShip.CannonReloadSpeed > actionCooldownTime) {
             actionCooldownTime = Time.time + enemyShip.CannonReloadSpeed * 2;
             StartCoroutine(DrawAttackIndicator(attackIndicatorMask));
+            OnAttack?.Invoke();
         }
     }
 
@@ -44,7 +46,7 @@ public class SeaBattleAI : MonoBehaviour {
         float maskYpos = -11;
 
         while ((buffTime += Time.deltaTime) <= cooldownEndTime && Mathf.Abs(mask.transform.localPosition.y) < Mathf.Abs(maskYpos)) {
-            mask.transform.localPosition = Vector3.MoveTowards(mask.transform.localPosition, new Vector3(mask.transform.localPosition.x, maskYpos, mask.transform.localPosition.z), Time.deltaTime * speed);            
+            mask.transform.localPosition = Vector3.MoveTowards(mask.transform.localPosition, new Vector3(mask.transform.localPosition.x, maskYpos, mask.transform.localPosition.z), Time.deltaTime * speed);
             yield return true;
         }
         attackIndicator.SetActive(false);

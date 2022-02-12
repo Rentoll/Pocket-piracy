@@ -75,5 +75,6 @@ public class MinigameCannon : Minigame {
         countdownBar.GetComponent<Healthbar>().fullHealth();
         ParticleSystem remains = Instantiate(woodenRemains);
         remains.Play();
+        NavalCombat?.Invoke(minigameResult());
     }
 }
