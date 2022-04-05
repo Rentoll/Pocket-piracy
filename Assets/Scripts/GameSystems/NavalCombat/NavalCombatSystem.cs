@@ -1,18 +1,22 @@
-using UnityEngine.Events;
 using UnityEngine;
 
-[System.Serializable]
-public class UnityEventFloat : UnityEvent<float> {
-}
-
 public class NavalCombatSystem : MonoBehaviour {
+
+    
+
     private Ship playerShip;
     private Ship enemyShip;
 
     private bool playerEvading = false;
 
     private void Awake() {
+        MinigameCannon.OnCannonShoot.AddListener(CannonShoot);
     }
+
+    private void CannonShoot(float damage) {
+        Debug.Log("Damaged by " + damage);
+    }
+
     public void AttackPlayerShip() {
         //
         //playShootingAnimation();

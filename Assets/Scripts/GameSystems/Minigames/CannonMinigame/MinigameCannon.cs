@@ -1,10 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class MinigameCannon : Minigame {
 
     private int numberOfTargets;
+
+    public static UnityEvent<float> OnCannonShoot = new UnityEvent<float>();
 
     [SerializeField]
     private GameObject[] targets;
@@ -21,14 +24,13 @@ public class MinigameCannon : Minigame {
     [SerializeField]
     private ParticleSystem woodenRemains;
 
+    private int successfulHits, allHits; 
+
     private void Awake() {
         //targets = GameObject.FindGameObjectsWithTag("Target");
         numberOfTargets = targets.Length;
+        countdownBar.SetActive(false);
         minigameGroup.SetActive(false);
-    }
-
-    private void FixedUpdate() {
-        checkTargetsCondition();
     }
 
     public override void startMinigame() {
@@ -41,6 +43,7 @@ public class MinigameCannon : Minigame {
             currentTarget.GetComponent<Target>().targetActivation();
         }
         button.GetComponent<ButtonCooldown>().StopCooldown();
+        successfulHits = allHits = 0;
         StartCoroutine(countdownToEnd());
 
     }
@@ -49,6 +52,10 @@ public class MinigameCannon : Minigame {
         countdownBar.GetComponent<Healthbar>().deliverDamage(1, minigameTimeInSeconds);
         yield return new WaitForSeconds(minigameTimeInSeconds);
         endMinigame();
+    }
+
+    private void FixedUpdate() {
+        checkTargetsCondition();
     }
 
     protected override void checkTargetsCondition() {
@@ -60,13 +67,21 @@ public class MinigameCannon : Minigame {
         }
         if (hittedtargets == numberOfTargets) {
             //minigameResult();
-            endMinigame();
+            minigameResult();
         }
     }
-    protected override float minigameResult() {
-        throw new System.NotImplementedException();
+    protected override void minigameResult() {
+        float damageMultiplier = 1;
+        foreach (GameObject currentTarget in targets) {
+            damageMultiplier += currentTarget.GetComponent<Target>().isSuccess() * 0.5f;
+        }
+        Debug.Log(damageMultiplier);
+        OnCannonShoot.Invoke(playerShip.GetComponent<Ship>().calculateDamage() * damageMultiplier);
+
+        endMinigame();
     }
     protected override void endMinigame() {
+
         minigameGroup.SetActive(false);
         countdownBar.SetActive(false);
         SeaBattle.SetActive(true);
@@ -75,6 +90,6 @@ public class MinigameCannon : Minigame {
         countdownBar.GetComponent<Healthbar>().fullHealth();
         ParticleSystem remains = Instantiate(woodenRemains);
         remains.Play();
-        NavalCombat?.Invoke(minigameResult());
+        //NavalCombatSystem.OnCannonShoot?.Invoke(5f);
     }
 }

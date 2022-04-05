@@ -11,6 +11,8 @@ TagManager:
   - Plank
   - Hole
   - SeaRepair
+  - EnemyShip
+  - PlayerShip
   layers:
   - Default
   - TransparentFX

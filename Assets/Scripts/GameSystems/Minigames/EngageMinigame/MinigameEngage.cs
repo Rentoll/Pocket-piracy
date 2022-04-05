@@ -78,7 +78,7 @@ public class MinigameEngage : Minigame {
         //countdownBar.GetComponent<Healthbar>().fullHealth();
     }
 
-    protected override float minigameResult() {
+    protected override void minigameResult() {
         throw new System.NotImplementedException();
     }
 }

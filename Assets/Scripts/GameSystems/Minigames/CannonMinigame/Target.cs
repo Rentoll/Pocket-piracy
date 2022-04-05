@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class Target : MonoBehaviour {
@@ -12,6 +12,7 @@ public class Target : MonoBehaviour {
 
     private bool touchable = false;
     private bool active;
+    private bool success;
 
     private float bound = 4;
 
@@ -23,6 +24,7 @@ public class Target : MonoBehaviour {
 
     public void targetActivation() {
         active = true;
+        success = false;
         touchable = Random.Range(0, 100) < 50 ? true : false;
         bound *= Random.Range(0, 2) * 2 - 1;
         StartCoroutine(targetMoving());
@@ -69,12 +71,14 @@ public class Target : MonoBehaviour {
 
     private void successfulShot() {
         //change for image
+        success = true;
         targetSprite.color = Color.grey;
         hitTarget.Play();
     }
 
     private void unsuccessfulShot() {
         //change for image
+        success = false;
         targetSprite.color = Color.yellow;
         missTarget.Play();
     }
@@ -83,5 +87,11 @@ public class Target : MonoBehaviour {
         if(active) 
             return false;
         return true;
+    }
+
+    public float isSuccess() {
+        if (success)
+            return 1.0f;
+        return 0.0f;
     }
 }

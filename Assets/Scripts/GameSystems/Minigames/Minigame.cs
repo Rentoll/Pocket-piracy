@@ -7,7 +7,8 @@ public abstract class Minigame : MonoBehaviour {
     protected GameObject minigameGroup;
     [SerializeField]
     protected GameObject countdownBar;
-    public UnityEventFloat NavalCombat;
+    [SerializeField]
+    protected GameObject playerShip;
 
     protected float successRate = 0;
     protected float minigameTimeInSeconds = 10;//seconds
@@ -15,7 +16,7 @@ public abstract class Minigame : MonoBehaviour {
     public abstract void startMinigame();
     protected abstract void checkTargetsCondition();
     protected abstract IEnumerator countdownToEnd();
-    protected abstract float minigameResult();
+    protected abstract void minigameResult();
     protected abstract void endMinigame(); 
 
 

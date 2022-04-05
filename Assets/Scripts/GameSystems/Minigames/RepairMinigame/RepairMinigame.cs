@@ -64,10 +64,9 @@ public class RepairMinigame : Minigame {
         SeaBattle.SetActive(true);
         button.GetComponent<ButtonCooldown>().DrawCooldown();
         countdownBar.GetComponent<Healthbar>().fullHealth();
-        NavalCombat?.Invoke(minigameResult());
     }
 
-    protected override float minigameResult() {
+    protected override void minigameResult() {
         throw new System.NotImplementedException();
     }
 }
