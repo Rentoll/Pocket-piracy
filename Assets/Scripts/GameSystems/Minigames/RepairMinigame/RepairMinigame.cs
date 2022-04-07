@@ -1,10 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class RepairMinigame : Minigame {
 
-    private int numberOfHoles;
+    public static UnityEvent<float> OnRepair = new UnityEvent<float>();
+
+    private int repairedHoles;
 
     [SerializeField]
     private GameObject[] holes;
@@ -18,7 +21,6 @@ public class RepairMinigame : Minigame {
     private void Awake() {
         //holes = GameObject.FindGameObjectsWithTag("Hole");
         //SeaBattle = GameObject.Find("SeaBattle");
-        numberOfHoles = holes.Length;
         minigameGroup.SetActive(false);
     }
 
@@ -27,11 +29,17 @@ public class RepairMinigame : Minigame {
     }
 
     public override void startMinigame() {
+
         Debug.Log("Started repair minigame");
+
         countdownBar.SetActive(true);
         minigameGroup.SetActive(true);
         countdownBar.GetComponent<Healthbar>().fullHealth();
-        SeaBattle.SetActive(false);
+        //SeaBattle.SetActive(false);
+        SeaBattle.transform.localScale = new Vector3(0, 0, 0);
+
+        repairedHoles = 0;
+
         foreach (GameObject currentTarget in holes) {
             currentTarget.GetComponent<Hole>().holeActivation();
         }
@@ -40,33 +48,50 @@ public class RepairMinigame : Minigame {
     }
 
     protected override void checkTargetsCondition() {
-        int repairedHoles = 0;
+        int currentRepairedHoles = 0;
         foreach (GameObject currentHole in holes) {
             if (currentHole.GetComponent<Hole>().checkStatus()) {
-                repairedHoles++;
+                currentRepairedHoles++;
             }
         }
-        if (repairedHoles == holes.Length) {
-            //minigameResult();
-            endMinigame();
+        if (currentRepairedHoles == holes.Length) {
+            repairedHoles = holes.Length;
+            minigameResult();
+            
         }
+    }
+
+    protected override void minigameResult() {
+        float repairMultiplier = 1 + repairedHoles * 0.5f;
+
+        Debug.Log(repairMultiplier);
+        OnRepair?.Invoke(playerShip.GetComponent<Ship>().NumberOfRepairPoints * repairMultiplier);
+
+        endMinigame();
     }
 
     protected override IEnumerator countdownToEnd() {
         countdownBar.GetComponent<Healthbar>().deliverDamage(1, minigameTimeInSeconds);
         yield return new WaitForSeconds(minigameTimeInSeconds);
-        endMinigame();
+
+        repairedHoles = 0;
+
+        foreach (GameObject currentHole in holes) {
+            if (currentHole.GetComponent<Hole>().checkStatus()) {
+                repairedHoles++;
+            }
+        }
+        minigameResult();
     }
 
     protected override void endMinigame() {
         minigameGroup.SetActive(false);
         countdownBar.SetActive(false);
-        SeaBattle.SetActive(true);
+        //SeaBattle.SetActive(true);
+        SeaBattle.transform.localScale = new Vector3(1, 1, 1);
         button.GetComponent<ButtonCooldown>().DrawCooldown();
         countdownBar.GetComponent<Healthbar>().fullHealth();
     }
 
-    protected override void minigameResult() {
-        throw new System.NotImplementedException();
-    }
+
 }

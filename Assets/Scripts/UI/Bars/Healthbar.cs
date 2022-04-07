@@ -12,7 +12,13 @@ public class Healthbar : MonoBehaviour {
     //private float damageApplyingTime = 2;
 
     //!!!!Make common function
+
+    private void Awake() {
+        fullHealth();
+    }
+
     public void deliverDamage(float damageAmount, float damageApplyingTime = 2) {
+        Debug.Log("Healthbar Deliver Damage " + damageAmount);
         HealthbarImage.fillAmount = Mathf.Clamp(HealthbarImage.fillAmount - damageAmount, 0, 1);
         float damageEndTime = Time.deltaTime + damageApplyingTime;
         StartCoroutine(drawDamage(damageApplyingTime, damageEndTime, HealthbarImage.fillAmount));
@@ -43,6 +49,7 @@ public class Healthbar : MonoBehaviour {
     }
 
     public void addHealth(float healAmount, float damageApplyingTime = 2) {
+        Debug.Log("Healthbar Add HP " + healAmount);
         float damageEndTime = Time.deltaTime + damageApplyingTime;
         StartCoroutine(drawHeal(damageApplyingTime, damageEndTime, Mathf.Clamp(HealthbarImage.fillAmount + healAmount, 0, 1)));
     }

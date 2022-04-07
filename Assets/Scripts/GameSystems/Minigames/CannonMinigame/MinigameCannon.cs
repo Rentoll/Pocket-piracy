@@ -38,7 +38,8 @@ public class MinigameCannon : Minigame {
         countdownBar.SetActive(true);
         minigameGroup.SetActive(true);
         countdownBar.GetComponent<Healthbar>().fullHealth();
-        SeaBattle.SetActive(false);
+        SeaBattle.transform.localScale = new Vector3(0, 0, 0);
+        //SeaBattle.SetActive(false);
         foreach (GameObject currentTarget in targets) {
             currentTarget.GetComponent<Target>().targetActivation();
         }
@@ -66,7 +67,6 @@ public class MinigameCannon : Minigame {
             }
         }
         if (hittedtargets == numberOfTargets) {
-            //minigameResult();
             minigameResult();
         }
     }
@@ -84,7 +84,8 @@ public class MinigameCannon : Minigame {
 
         minigameGroup.SetActive(false);
         countdownBar.SetActive(false);
-        SeaBattle.SetActive(true);
+        //SeaBattle.SetActive(true);
+        SeaBattle.transform.localScale = new Vector3(1, 1, 1);
         button.GetComponent<ButtonCooldown>().DrawCooldown();
         Aim.GetComponent<AimMovement>().ResetPosition();
         countdownBar.GetComponent<Healthbar>().fullHealth();

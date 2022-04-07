@@ -1,9 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MinigameEvasion : Minigame {
+
+    public static UnityEvent<bool> OnEvasion = new UnityEvent<bool>();
 
     [SerializeField]
     private Camera mainCamera;
@@ -26,9 +28,10 @@ public class MinigameEvasion : Minigame {
         StartCoroutine(ShipEvasion());
 
         //countdownBar.SetActive(true);
-        
+
         //countdownBar.GetComponent<Healthbar>().fullHealth();
-        SeaBattle.SetActive(false);
+        //SeaBattle.SetActive(false);
+        SeaBattle.transform.localScale = new Vector3(0, 0, 0);
 
         button.GetComponent<ButtonCooldown>().StopCooldown();
         StartCoroutine(countdownToEnd());
@@ -38,10 +41,15 @@ public class MinigameEvasion : Minigame {
     
     private IEnumerator ShipEvasion() {
         Debug.Log("Started camera moving");
+
+
         bool active = true;
         float bound = 10;
         float speed = 10;
         bool cameraReturning = false;
+
+        OnEvasion?.Invoke(active);
+
         while (active) {
             mainCamera.transform.localPosition = Vector3.MoveTowards(mainCamera.transform.localPosition, new Vector3(bound, mainCamera.transform.localPosition.y, mainCamera.transform.localPosition.z), Time.deltaTime * speed);
             if (mainCamera.transform.localPosition.x >= bound) {
@@ -54,6 +62,7 @@ public class MinigameEvasion : Minigame {
             yield return null;
         }
         Debug.Log("Ended camera moving");
+        OnEvasion?.Invoke(active);
         endMinigame();
     }
 
@@ -68,7 +77,8 @@ public class MinigameEvasion : Minigame {
     protected override void endMinigame() {
         minigameGroup.SetActive(false);
         //countdownBar.SetActive(false);
-        SeaBattle.SetActive(true);
+        //SeaBattle.SetActive(true);
+        SeaBattle.transform.localScale = new Vector3(1, 1, 1);
         button.GetComponent<ButtonCooldown>().DrawCooldown();
         //countdownBar.GetComponent<Healthbar>().fullHealth();
     }

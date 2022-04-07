@@ -32,11 +32,8 @@ public class Ship : MonoBehaviour {
     public float CannonReloadSpeed { get => cannonReloadSpeed; set => cannonReloadSpeed = value; }
     public float CannonDamage { get => cannonDamage; set => cannonDamage = value; }
     public int CannonNum { get => cannonNum; set => cannonNum = value; }
-    public float FullHullPoints { get => fullHullPoints; }
+    public float FullHullPoints { get => fullHullPoints; set => fullHullPoints = value; }
 
-    private Ship() {
-        fullHullPoints = hullPoints;
-    }
 
     public float calculateDamage() {
         return CannonDamage * CannonNum;

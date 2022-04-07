@@ -41,7 +41,8 @@ public class MinigameEngage : Minigame {
         //countdownBar.SetActive(true);
 
         //countdownBar.GetComponent<Healthbar>().fullHealth();
-        SeaBattle.SetActive(false);
+        //SeaBattle.SetActive(false);
+        SeaBattle.transform.localScale = new Vector3(0, 0, 0);
 
         button.GetComponent<ButtonCooldown>().StopCooldown();
         StartCoroutine(countdownToEnd());
@@ -73,7 +74,8 @@ public class MinigameEngage : Minigame {
     protected override void endMinigame() {
         minigameGroup.SetActive(false);
         //countdownBar.SetActive(false);
-        SeaBattle.SetActive(true);
+        //SeaBattle.SetActive(true);
+        SeaBattle.transform.localScale = new Vector3(1, 1, 1);
         button.GetComponent<ButtonCooldown>().DrawCooldown();
         //countdownBar.GetComponent<Healthbar>().fullHealth();
     }

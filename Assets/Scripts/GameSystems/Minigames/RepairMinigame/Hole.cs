@@ -6,6 +6,7 @@ public class Hole : MonoBehaviour {
     [SerializeField]
     private GameObject[] planks;
 
+
     private short currentPlank = 0;
     private bool repaired = false;
 
@@ -15,10 +16,6 @@ public class Hole : MonoBehaviour {
         foreach (GameObject plank in planks) {
             plank.SetActive(false);
         }
-    }
-
-    private void Update() {
-       
     }
 
     public void addPlank() {

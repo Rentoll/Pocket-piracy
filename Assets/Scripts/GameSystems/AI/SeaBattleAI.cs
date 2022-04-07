@@ -3,6 +3,9 @@ using UnityEngine.Events;
 using UnityEngine;
 
 public class SeaBattleAI : MonoBehaviour {
+
+    public static UnityEvent OnAiAttack = new UnityEvent();
+
     [SerializeField]
     private GameObject enemyShipGameObject;
     [SerializeField]
@@ -29,11 +32,11 @@ public class SeaBattleAI : MonoBehaviour {
         if (Time.time + enemyShip.CannonReloadSpeed > actionCooldownTime) {
             actionCooldownTime = Time.time + enemyShip.CannonReloadSpeed * 2;
             StartCoroutine(DrawAttackIndicator(attackIndicatorMask));
-            OnAttack?.Invoke();
         }
     }
 
     private IEnumerator DrawAttackIndicator(GameObject mask, float duration = 5f) {
+
         Debug.Log("Started drawing attack indicator");
 
         mask.transform.localPosition = Vector3.zero;
@@ -50,6 +53,7 @@ public class SeaBattleAI : MonoBehaviour {
             yield return true;
         }
         attackIndicator.SetActive(false);
+        OnAiAttack?.Invoke();
     }
 
 }
