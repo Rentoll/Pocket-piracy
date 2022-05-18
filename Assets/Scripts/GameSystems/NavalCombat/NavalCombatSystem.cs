@@ -76,9 +76,6 @@ public class NavalCombatSystem : MonoBehaviour {
         }
     }
 
-
-
-
     private void checkWinLoseCondition() {
         if(playerShip.GetComponent<Ship>().HullPoints <= 0) {
             //win()
@@ -87,8 +84,5 @@ public class NavalCombatSystem : MonoBehaviour {
             //lose()
         }
     }
-
-
-
 
 }

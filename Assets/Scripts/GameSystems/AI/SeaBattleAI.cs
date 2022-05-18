@@ -1,7 +1,9 @@
 using System.Collections;
 using UnityEngine.Events;
 using UnityEngine;
-
+/// <summary>
+/// AI for enemy ship during naval combat
+/// </summary>
 public class SeaBattleAI : MonoBehaviour {
 
     public static UnityEvent OnAiAttack = new UnityEvent();
