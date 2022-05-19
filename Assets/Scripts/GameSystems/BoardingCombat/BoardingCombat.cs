@@ -7,8 +7,6 @@ public class BoardingCombat : MonoBehaviour {
     [SerializeField]
     private GameObject enemyCaptain;
 
-    private bool playerEvading = false;
-
     [SerializeField]
     private GameObject healthbarPlayer;
     [SerializeField]
