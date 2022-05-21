@@ -50,13 +50,12 @@ public class SaberAttackMinigame : Minigame {
         if(playerDirection.Direction == attackDirection) {
             Debug.Log("Successfull saber attack");
             attackDamageMult = 1.7f;
-            minigameResult();
         }
         else {
             Debug.Log("Unsuccess saber attack");
             attackDamageMult = 0.5f;
-            minigameResult();
         }
+        minigameResult();
     }
 
     protected override IEnumerator countdownToEnd() {
@@ -72,9 +71,11 @@ public class SaberAttackMinigame : Minigame {
         button.GetComponent<ButtonCooldown>().DrawCooldown();
         countdownBar.GetComponent<Healthbar>().fullHealth();
         UI.GetComponent<UIMasterController>().ShowUI();
+        
     }
 
     protected override void minigameResult() {
+        OnSaberHit?.Invoke(attackDamageMult);
         endMinigame();
         //draw attack animation
         //deal damage

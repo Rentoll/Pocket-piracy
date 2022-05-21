@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PistolAttackMinigame : Minigame {
 
-    public static UnityEvent<float> OnPistolHit = new UnityEvent<float>();
+    public static UnityEvent OnPistolHit = new UnityEvent();
 
     [SerializeField]
     private GameObject[] movingLines;
@@ -32,6 +32,8 @@ public class PistolAttackMinigame : Minigame {
         UI.GetComponent<UIMasterController>().HideUI();
         minigameGroup.SetActive(true);
         countdownBar.SetActive(true);
+        movingLines[0].transform.position = new Vector3(-9f, 0f, 0f);
+        movingLines[1].transform.position = new Vector3(0f, 5f, 0f);
         StartCoroutine(countdownToEnd());
         StartCoroutine(TargetMoving());
     }
@@ -91,6 +93,7 @@ public class PistolAttackMinigame : Minigame {
     protected override void minigameResult() {
         if (successfulLines == maxLines) {
             Debug.Log("Pistol attack win");
+            OnPistolHit?.Invoke();
             //win
         }
         endMinigame();
