@@ -14,6 +14,8 @@ public class SeaBattleAI : MonoBehaviour {
     private GameObject attackIndicator;
     [SerializeField]
     private GameObject attackIndicatorMask;
+    [SerializeField]
+    private ParticleSystem shootingSmoke;
 
     public UnityEvent OnAttack;
 
@@ -55,6 +57,8 @@ public class SeaBattleAI : MonoBehaviour {
             yield return true;
         }
         attackIndicator.SetActive(false);
+        ParticleSystem smoke = Instantiate(shootingSmoke);
+        shootingSmoke.Play();
         OnAiAttack?.Invoke();
     }
 

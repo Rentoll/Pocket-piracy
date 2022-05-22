@@ -34,7 +34,7 @@ public class MinigameEvasion : Minigame {
         SeaBattle.transform.localScale = new Vector3(0, 0, 0);
 
         button.GetComponent<ButtonCooldown>().StopCooldown();
-        StartCoroutine(countdownToEnd());
+        //StartCoroutine(countdownToEnd());
     }
 
 

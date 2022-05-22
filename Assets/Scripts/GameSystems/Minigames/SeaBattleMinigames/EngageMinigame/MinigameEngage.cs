@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,7 +30,8 @@ public class MinigameEngage : Minigame {
 
     public override void startMinigame() {
         if (currentEnemySize > finalSize) {
-            endMinigame();
+            SceneManager.LoadScene("BoardingBattle");
+            //endMinigame();
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Start boarding
         }
         Debug.Log("Started engaging minigame");
@@ -45,7 +46,7 @@ public class MinigameEngage : Minigame {
         SeaBattle.transform.localScale = new Vector3(0, 0, 0);
 
         button.GetComponent<ButtonCooldown>().StopCooldown();
-        StartCoroutine(countdownToEnd());
+        //StartCoroutine(countdownToEnd());
     }
     private IEnumerator ShipEngage(Vector3 minScale) {
         Debug.Log("Started sizing enemy ship");
