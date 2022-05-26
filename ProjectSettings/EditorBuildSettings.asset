@@ -5,13 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/LoadingScreen.unity
+    guid: b4afa69aaf96710459f45b640ea70945
   - enabled: 1
     path: Assets/Scenes/NavalBattle.unity
     guid: ef9ea038abec74e40adcff8fe613c14a
   - enabled: 1
     path: Assets/Scenes/BoardingBattle.unity
     guid: e425f55fde39bd243baa3aa20cf6959c
+  - enabled: 1
+    path: Assets/Scenes/BoardingScreen.unity
+    guid: 4fcd7494ac822e14fb5c3dc89e4a8562
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: c7991aa5d7477564694de6cd4028f49f
+  - enabled: 1
+    path: Assets/Scenes/LoseScreen.unity
+    guid: 5d739e3127a8119438efb5edc626434c
   m_configObjects: {}

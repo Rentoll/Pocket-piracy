@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4230408021202898173, guid: cf53ee68d0a66e94aaf8040f7b9b392f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 37cc3854558fd5e4a8d60aabdaa99443, type: 2}
     - target: {fileID: 4230408021202898174, guid: cf53ee68d0a66e94aaf8040f7b9b392f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -69,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4230408021202898175, guid: cf53ee68d0a66e94aaf8040f7b9b392f, type: 3}
       propertyPath: m_Name
-      value: Blood
+      value: Blood Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf53ee68d0a66e94aaf8040f7b9b392f, type: 3}

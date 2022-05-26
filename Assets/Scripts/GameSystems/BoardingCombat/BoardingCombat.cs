@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BoardingCombat : MonoBehaviour {
 
@@ -33,8 +34,11 @@ public class BoardingCombat : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if(playerCaptain.HealthPoints <= 0 || enemyCaptain.HealthPoints <= 0) {
-            Debug.Log("GameOver");
+        if (playerCaptain.HealthPoints <= 0) {
+            SceneManager.LoadScene("LoseScreen");
+        }
+        else if (enemyCaptain.HealthPoints <= 0) {
+            SceneManager.LoadScene("WinScreen");
         }
     }
 

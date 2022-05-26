@@ -25,7 +25,7 @@ public class ButtonCooldown : MonoBehaviour {
     public void StopCooldown() {
         drawer.GetComponent<Drawer>().PauseDrawer();
     }
-
+    
     //!!!!!make common function
     /*
     private IEnumerator drawCooldown(float cooldownTime, float cooldownEndTime) {

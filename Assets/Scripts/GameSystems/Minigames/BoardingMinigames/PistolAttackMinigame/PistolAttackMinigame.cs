@@ -15,6 +15,8 @@ public class PistolAttackMinigame : Minigame {
     private Button button;
     [SerializeField]
     private GameObject UI;
+    [SerializeField]
+    private GameObject text;
 
     private float[] bound = new float[] { 9f, 5f };
     private bool active;
@@ -24,10 +26,12 @@ public class PistolAttackMinigame : Minigame {
 
     private void Awake() {
         minigameGroup.SetActive(false);
+        text.SetActive(false);
     }
 
     public override void startMinigame() {
         active = true;
+        text.SetActive(true);
         currentLine = successfulLines = 0;
         UI.GetComponent<UIMasterController>().HideUI();
         minigameGroup.SetActive(true);
@@ -84,6 +88,7 @@ public class PistolAttackMinigame : Minigame {
     protected override void endMinigame() {
         successfulLines = 0;
         minigameGroup.SetActive(false);
+        text.SetActive(false);
         countdownBar.SetActive(false);
         button.GetComponent<ButtonCooldown>().DrawCooldown();
         countdownBar.GetComponent<Healthbar>().fullHealth();

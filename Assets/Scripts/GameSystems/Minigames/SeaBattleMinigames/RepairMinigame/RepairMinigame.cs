@@ -18,10 +18,14 @@ public class RepairMinigame : Minigame {
     [SerializeField]
     private Button button;
 
+    [SerializeField]
+    private GameObject text;
+
     private void Awake() {
         //holes = GameObject.FindGameObjectsWithTag("Hole");
         //SeaBattle = GameObject.Find("SeaBattle");
         minigameGroup.SetActive(false);
+        text.SetActive(false);
     }
 
     private void FixedUpdate() {
@@ -31,7 +35,7 @@ public class RepairMinigame : Minigame {
     public override void startMinigame() {
 
         Debug.Log("Started repair minigame");
-
+        text.SetActive(true);
         countdownBar.SetActive(true);
         minigameGroup.SetActive(true);
         countdownBar.GetComponent<Healthbar>().fullHealth();
@@ -88,6 +92,7 @@ public class RepairMinigame : Minigame {
         minigameGroup.SetActive(false);
         countdownBar.SetActive(false);
         //SeaBattle.SetActive(true);
+        text.SetActive(false);
         SeaBattle.transform.localScale = new Vector3(1, 1, 1);
         button.GetComponent<ButtonCooldown>().DrawCooldown();
         countdownBar.GetComponent<Healthbar>().fullHealth();

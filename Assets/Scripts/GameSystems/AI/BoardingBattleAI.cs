@@ -71,10 +71,6 @@ public class BoardingBattleAI : MonoBehaviour {
             case 1:
                 OnAIAction?.Invoke("Pirate_Pistol_Attack");
                 break;
-            case 2:
-                break;
-            case 3:
-                break;
             default:
                 break;
         }

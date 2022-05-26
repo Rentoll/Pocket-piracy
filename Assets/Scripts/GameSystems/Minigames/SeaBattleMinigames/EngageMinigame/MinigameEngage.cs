@@ -12,12 +12,7 @@ public class MinigameEngage : Minigame {
 
     [SerializeField]
     private GameObject SeaBattle;
-    /*
-    private Vector3[] enemyShipScale = {
-        new Vector3(0.55f, 0.55f, 0.55f),
-        new Vector3(0.7f, 0.7f, 0.7f)
-    };
-    */
+
 
     private Vector3[] enemyShipScale = {
         new Vector3(1.2f, 1.2f, 1f),
@@ -30,9 +25,7 @@ public class MinigameEngage : Minigame {
 
     public override void startMinigame() {
         if (currentEnemySize > finalSize) {
-            SceneManager.LoadScene("BoardingBattle");
-            //endMinigame();
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Start boarding
+            SceneManager.LoadScene("BoardingScreen");
         }
         Debug.Log("Started engaging minigame");
         minigameGroup.SetActive(true);

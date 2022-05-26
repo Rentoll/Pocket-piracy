@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NavalCombatSystem : MonoBehaviour {
 
@@ -78,10 +79,10 @@ public class NavalCombatSystem : MonoBehaviour {
 
     private void checkWinLoseCondition() {
         if(playerShip.GetComponent<Ship>().HullPoints <= 0) {
-            //win()
+            SceneManager.LoadScene("LoseScreen");
         }
-        if(enemyShip.GetComponent<Ship>().HullPoints <= 0) {
-            //lose()
+        else if(enemyShip.GetComponent<Ship>().HullPoints <= 0) {
+            SceneManager.LoadScene("WinScreen");
         }
     }
 

@@ -18,7 +18,7 @@ public class Healthbar : MonoBehaviour {
     }
 
     public void deliverDamage(float damageAmount, float damageApplyingTime = 2) {
-        Debug.Log("Healthbar Deliver Damage " + damageAmount);
+        Debug.Log("Healthbar took Damage " + damageAmount);
         HealthbarImage.fillAmount = Mathf.Clamp(HealthbarImage.fillAmount - damageAmount, 0, 1);
         float damageEndTime = Time.deltaTime + damageApplyingTime;
         StartCoroutine(drawDamage(damageApplyingTime, damageEndTime, HealthbarImage.fillAmount));

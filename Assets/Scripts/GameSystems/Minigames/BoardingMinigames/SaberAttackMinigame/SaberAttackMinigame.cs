@@ -13,6 +13,8 @@ public class SaberAttackMinigame : Minigame {
     private SwipeData playerDirection;
     private float attackDamageMult = 1f;
 
+    private bool active = false;
+
     [SerializeField]
     private Button button;
 
@@ -28,12 +30,15 @@ public class SaberAttackMinigame : Minigame {
     }
 
     private void SwipeDetector_OnSwipe(SwipeData data) {
-        Debug.Log("Swipe in Direction: " + data.Direction);
-        playerDirection = data;
-        checkTargetsCondition();
+        if (active) {
+            Debug.Log("Swipe in Direction: " + data.Direction);
+            playerDirection = data;
+            checkTargetsCondition();
+        }
     }
 
     public override void startMinigame() {
+        active = true;
         UI.GetComponent<UIMasterController>().HideUI();
         minigameGroup.SetActive(true);
         countdownBar.SetActive(true);
@@ -65,6 +70,7 @@ public class SaberAttackMinigame : Minigame {
     }
 
     protected override void endMinigame() {
+        active = false;
         minigameGroup.SetActive(false);
         countdownBar.SetActive(false);
         AttackDirection.SetActive(false);

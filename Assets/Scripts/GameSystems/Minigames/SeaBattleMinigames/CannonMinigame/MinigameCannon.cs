@@ -24,19 +24,23 @@ public class MinigameCannon : Minigame {
     [SerializeField]
     private ParticleSystem woodenRemains;
 
+    [SerializeField]
+    private GameObject text;
+
     private int successfulHits, allHits; 
 
     private void Awake() {
-        //targets = GameObject.FindGameObjectsWithTag("Target");
         numberOfTargets = targets.Length;
         countdownBar.SetActive(false);
         minigameGroup.SetActive(false);
+        text.SetActive(false);
     }
 
     public override void startMinigame() {
         Debug.Log("Started cannon minigame");
         countdownBar.SetActive(true);
         minigameGroup.SetActive(true);
+        text.SetActive(true);
         countdownBar.GetComponent<Healthbar>().fullHealth();
         SeaBattle.transform.localScale = new Vector3(0, 0, 0);
         //SeaBattle.SetActive(false);
@@ -81,7 +85,7 @@ public class MinigameCannon : Minigame {
         endMinigame();
     }
     protected override void endMinigame() {
-
+        text.SetActive(false);
         minigameGroup.SetActive(false);
         countdownBar.SetActive(false);
         //SeaBattle.SetActive(true);
